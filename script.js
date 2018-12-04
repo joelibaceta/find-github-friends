@@ -10,6 +10,17 @@ window.fbAsyncInit = function() {
     FB.AppEvents.logPageView();
 
     FB.getLoginStatus(function(response) {
+        if (response.status == "connected"){
+            console.log("connected");
+        } else {
+            FB.login(function(response) {
+                console.log(response);
+            },
+            {
+                scope: 'user_friends',
+                auth_type: 'rerequest'
+            });
+        }
         console.log(response);
     });
 };
