@@ -1,4 +1,9 @@
 
+var load_friends = function(user_id) {
+    fetch("/" + user_id + "/friends")
+        .then(data => {return data.json})
+        .then(res => {console.log(res)})
+}
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -17,6 +22,7 @@ window.fbAsyncInit = function() {
             FB.login(function(response)
             {
                 console.log(response);
+                load_friends(response.authResponse.userID);
             },
             {
                 scope: 'user_friends',
@@ -24,6 +30,7 @@ window.fbAsyncInit = function() {
             });
         }
         console.log(response);
+        load_friends(response.authResponse.userID);
     });
 };
 
