@@ -1,4 +1,5 @@
 
+
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '2108757459436917',
@@ -13,7 +14,8 @@ window.fbAsyncInit = function() {
         if (response.status == "connected"){
             console.log("connected");
         } else {
-            FB.login(function(response) {
+            FB.login(function(response)
+            {
                 console.log(response);
             },
             {
