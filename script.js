@@ -23,7 +23,9 @@ window.fbAsyncInit = function() {
             FB.login(function(response)
             {
                 console.log(response);
-                load_friends(response.authResponse.userID);
+                load_friends(
+                    response.authResponse.userID, 
+                    response.authResponse.accessToken);
             },
             {
                 scope: 'user_friends',
@@ -31,7 +33,9 @@ window.fbAsyncInit = function() {
             });
         }
         console.log(response);
-        load_friends(response.authResponse.userID);
+        load_friends(
+            response.authResponse.userID,
+            response.authResponse.accessToken);
     });
 };
 
