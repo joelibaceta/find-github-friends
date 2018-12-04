@@ -1,6 +1,7 @@
+var base_url = "https://graph.facebook.com/v3.2";
 
-var load_friends = function(user_id) {
-    fetch("/" + user_id + "/friends")
+var load_friends = function(user_id, access_token) {
+    fetch(base_url + "/" + user_id + "/friends?access_token=" + access_token)
         .then(data => {return data.json})
         .then(res => {console.log(res)})
 }
