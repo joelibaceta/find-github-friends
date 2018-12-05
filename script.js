@@ -1,7 +1,7 @@
 var base_url = "https://graph.facebook.com/v3.2";
 
-var load_friends = function(user_id, access_token) {
-    fetch(base_url + "/" + user_id + "/friends?access_token=" + access_token)
+var load_friends = function(access_token) {
+    fetch(base_url + "/me/friends?access_token=" + access_token)
         .then(data => {return data.json()})
         .then(res => {console.log(res)})
 }
@@ -23,9 +23,7 @@ window.fbAsyncInit = function() {
             FB.login(function(response)
             {
                 console.log(response);
-                load_friends(
-                    response.authResponse.userID, 
-                    response.authResponse.accessToken);
+                load_friends(response.authResponse.accessToken);
             },
             {
                 scope: 'user_friends',
@@ -33,9 +31,7 @@ window.fbAsyncInit = function() {
             });
         }
         console.log(response);
-        load_friends(
-            response.authResponse.userID,
-            response.authResponse.accessToken);
+        load_friends(response.authResponse.accessToken);
     });
 };
 
